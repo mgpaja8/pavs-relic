@@ -1,6 +1,7 @@
-package inmemory
+package main
 
 import (
+	"github.com/google/uuid"
 	"github.com/mgpaja8/pavs-relic/internal/domain/models"
 	"github.com/mgpaja8/pavs-relic/internal/domain/valueobjects"
 )
@@ -8,6 +9,11 @@ import (
 var (
 	companyGoogle, _   = models.NewCompany(valueobjects.CompanyName("Google"))
 	companyNewRelic, _ = models.NewCompany(valueobjects.CompanyName("New Relic"))
+
+	companiesMap = map[uuid.UUID]models.Company{
+		companyGoogle.ID():   companyGoogle,
+		companyNewRelic.ID(): companyNewRelic,
+	}
 
 	customer1, _  = models.NewCustomer(companyGoogle, valueobjects.FirstName("Jane"), valueobjects.LastName("Doe"))
 	customer2, _  = models.NewCustomer(companyGoogle, valueobjects.FirstName("John"), valueobjects.LastName("Smith"))

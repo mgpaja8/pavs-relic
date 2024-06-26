@@ -1,6 +1,8 @@
 package models
 
 import (
+	"encoding/json"
+
 	"github.com/google/uuid"
 
 	"github.com/mgpaja8/pavs-relic/internal/domain/valueobjects"
@@ -19,4 +21,14 @@ func NewCompany(name valueobjects.CompanyName) (Company, error) {
 		id:   uuid.New(),
 		name: name,
 	}, nil
+}
+
+func (c Company) MarshalJSON() ([]byte, error) {
+	return json.Marshal(&struct {
+		ID   string `json:"id"`
+		Name string `json:"name"`
+	}{
+		ID:   c.id.String(),
+		Name: c.name.String(),
+	})
 }

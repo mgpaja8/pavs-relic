@@ -7,7 +7,7 @@ import (
 )
 
 type GetSlimResponse struct {
-	Companies []models.Company
+	Companies []models.Company `json:"companies"`
 }
 
 func (s *service) GetSlim(ctx context.Context) (GetSlimResponse, error) {
