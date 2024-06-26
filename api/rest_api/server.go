@@ -7,6 +7,7 @@ import (
 	"github.com/gorilla/mux"
 
 	"github.com/mgpaja8/pavs-relic/internal/application/services/companies"
+	"github.com/mgpaja8/pavs-relic/internal/application/services/customers"
 
 	inmemory "github.com/mgpaja8/pavs-relic/internal/infrastructure/persistance/in_memory"
 	"github.com/mgpaja8/pavs-relic/rest_api/handlers"
@@ -22,7 +23,10 @@ func setupRouter() *mux.Router {
 	router.Use(jsonMiddleware)
 
 	companiesService := getCompaniesService()
+	customersService := getCustomerService()
+
 	router.HandleFunc("/companies/slim", handlers.GetCompaniesSlim(companiesService)).Methods("GET")
+	router.HandleFunc("/customers", handlers.GetCustomers(customersService)).Methods("GET")
 
 	return router
 }
@@ -38,6 +42,14 @@ func getCompaniesService() companies.Service {
 	companiesRepo := inmemory.NewCompanyRepository(companiesMap)
 
 	service := companies.NewService(companiesRepo)
+
+	return service
+}
+
+func getCustomerService() customers.Service {
+	customersRepo := inmemory.NewCustomerRepository(customersMap)
+
+	service := customers.NewService(customersRepo)
 
 	return service
 }

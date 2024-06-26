@@ -14,7 +14,7 @@ type GetAllRequest struct {
 }
 
 type GetAllResponse struct {
-	Customers []models.Customer
+	Customers []models.Customer `json:"customers"`
 }
 
 func (s *service) GetAll(ctx context.Context, req GetAllRequest) (GetAllResponse, error) {
