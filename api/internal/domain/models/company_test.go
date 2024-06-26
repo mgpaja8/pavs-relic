@@ -5,8 +5,9 @@ import (
 	"testing"
 
 	"github.com/google/uuid"
-	"github.com/mgpaja8/pavs-relic/internal/domain/valueobjects"
 	"github.com/stretchr/testify/assert"
+
+	"github.com/mgpaja8/pavs-relic/internal/domain/valueobjects"
 )
 
 func Test_Company_Getters(t *testing.T) {
