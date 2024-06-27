@@ -1,0 +1,25 @@
+.customer-item-component {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 2rem;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #eee;
+  }
+
+  .name {
+    width: 16rem;
+    font-size: 1.6rem;
+  }
+
+  .company {
+    padding: 0.2rem 0.4rem;
+    background-color: #eee;
+    border-radius: 2px;
+    font-size: 1.6rem;
+  }
+}
