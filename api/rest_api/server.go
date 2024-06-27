@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 
 	"github.com/mgpaja8/pavs-relic/internal/application/services/companies"
 	"github.com/mgpaja8/pavs-relic/internal/application/services/customers"
@@ -15,7 +16,10 @@ import (
 
 func main() {
 	router := setupRouter()
-	log.Fatal(http.ListenAndServe(":3001", router))
+
+	corsHandler := cors.Default().Handler(router)
+
+	log.Fatal(http.ListenAndServe(":3001", corsHandler))
 }
 
 func setupRouter() *mux.Router {
