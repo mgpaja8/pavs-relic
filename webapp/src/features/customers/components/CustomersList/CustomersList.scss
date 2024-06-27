@@ -15,8 +15,14 @@
     .title {
       font-size: 2.4rem;
     }
-  }
 
+    .filters-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 2rem;
+    }
+  }
   .no-results {
     display: flex;
     justify-content: center;
