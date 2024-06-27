@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    ports:
+      - "3001:3001"
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./webapp
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"  # Map port 3000 to enable hot-reloading
+    volumes:
+      - ./webapp:/app  # Mount local webapp directory into the container
+    environment:
+      - NODE_ENV=development  # Set NODE_ENV to development
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
