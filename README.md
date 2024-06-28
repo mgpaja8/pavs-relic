@@ -6,7 +6,7 @@
 
 #### Run project
 
-1. Run `docker-compose up --build`
+1. Run `docker-compose up`
 
 #### Accessing app
 
