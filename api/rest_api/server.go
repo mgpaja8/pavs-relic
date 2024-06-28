@@ -7,16 +7,18 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/rs/cors"
 
+	"github.com/mgpaja8/pavs-relic/db"
 	"github.com/mgpaja8/pavs-relic/internal/application/services/companies"
 	"github.com/mgpaja8/pavs-relic/internal/application/services/customers"
 
-	inmemory "github.com/mgpaja8/pavs-relic/internal/infrastructure/persistance/in_memory"
+	"github.com/mgpaja8/pavs-relic/internal/infrastructure/persistance/postgres"
 	"github.com/mgpaja8/pavs-relic/rest_api/handlers"
 )
 
 func main() {
-	router := setupRouter()
+	db.InitDB(db.ConnectionString())
 
+	router := setupRouter()
 	corsHandler := cors.Default().Handler(router)
 
 	log.Fatal(http.ListenAndServe(":3001", corsHandler))
@@ -43,7 +45,7 @@ func jsonMiddleware(next http.Handler) http.Handler {
 }
 
 func getCompaniesService() companies.Service {
-	companiesRepo := inmemory.NewCompanyRepository(companiesMap)
+	companiesRepo := postgres.NewCompanyRepository()
 
 	service := companies.NewService(companiesRepo)
 
@@ -51,7 +53,7 @@ func getCompaniesService() companies.Service {
 }
 
 func getCustomerService() customers.Service {
-	customersRepo := inmemory.NewCustomerRepository(customersMap)
+	customersRepo := postgres.NewCustomerRepository()
 
 	service := customers.NewService(customersRepo)
 

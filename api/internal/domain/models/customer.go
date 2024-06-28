@@ -28,6 +28,15 @@ func NewCustomer(company Company, firstName valueobjects.FirstName, lastName val
 	}, nil
 }
 
+func NewCustomerFromDb(id, companyID uuid.UUID, firstName valueobjects.FirstName, lastName valueobjects.LastName) Customer {
+	return Customer{
+		id:        id,
+		companyID: companyID,
+		firstName: firstName,
+		lastName:  lastName,
+	}
+}
+
 func (c Customer) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		ID        string `json:"id"`

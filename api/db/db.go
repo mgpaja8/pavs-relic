@@ -25,8 +25,8 @@ var modelTypes = []Model{
 
 func ConnectionString() string {
 	cs := fmt.Sprintf("sslmode=disable host=%s port=%s dbname=%s user=%s password=%s",
-		"localhost",
-		"15432",
+		"postgres",
+		"5432",
 		"pavsrelic",
 		"postgres",
 		"reallygoodpassword",

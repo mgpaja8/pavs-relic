@@ -23,6 +23,13 @@ func NewCompany(name valueobjects.CompanyName) (Company, error) {
 	}, nil
 }
 
+func NewCompanyFromDb(id uuid.UUID, name valueobjects.CompanyName) Company {
+	return Company{
+		id:   id,
+		name: name,
+	}
+}
+
 func (c Company) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		ID   string `json:"id"`
