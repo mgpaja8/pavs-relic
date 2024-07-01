@@ -6,7 +6,11 @@
 
 #### Run project
 
-1. Run `docker-compose up`
+Monday, July 1st, 2024 Update
+node_modules were just copied over for front end, so we actually need to install those packages and then we can start containers. Sorry :)
+
+1. `cd webapp && npm install`
+2. Run `docker-compose up`
 
 #### Accessing app
 
